@@ -8,18 +8,16 @@
 class Solution {
 public:
     int removeElement(vector<int>& nums, int val) {
-        int length = nums.size();
-        int cp = 0;
-        for (int i=0; i<length; i++) {
-            if (nums[i] != val) {
-                nums[cp] = nums[i];
-                cp++;
+        int start = 0, end = nums.size()-1;
+        while (start<=end) {
+            if (nums[start] == val && nums[end] != val) {
+                swap(nums[start], nums[end]);
             }
+            if (nums[start] != val) start++;
+            if (nums[end] == val) end--;
         }
-        for (int i=0; i<length-cp; i++) {
-            nums.pop_back();
-        }
-        return cp;
+        return start;
+        
     }
 };
 // @lc code=end
